@@ -1,14 +1,16 @@
  const mongoose = require("mongoose");
+ require('dotenv').config();
 
-const URI = "mongodb://127.0.0.1:27017/hotels"
-// mongoose.connect(URI);
+// const URL = process.env.MONGODB_URL_LOCAL
+
+const mongoURL  = process.env.MONGODB_URL;
 
 const connectDB = async () => {
     try {
-        await mongoose.connect(URI);
+        await mongoose.connect(mongoURL);
         console.log('connection successful to database');
     } catch (error) {
-        console.log("databse connection failed");
+        console.log("databse connection failed" ,error);
         process.exit(0);
     }
 };
